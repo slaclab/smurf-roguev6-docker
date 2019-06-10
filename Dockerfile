@@ -14,7 +14,7 @@ RUN pip3 install PyYAML Pyro4 parse click pyzmq packaging
 
 #Install Rogue
 WORKDIR /usr/local/src
-RUN git clone https://github.com/slaclab/rogue.git -b v3.3.2
+RUN git clone https://github.com/slaclab/rogue.git -b v3.3.3
 WORKDIR rogue
 
 # Apply AxiStreamDma patch, as a workaround to race condition

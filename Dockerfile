@@ -17,12 +17,6 @@ WORKDIR /usr/local/src
 RUN git clone https://github.com/slaclab/rogue.git -b v3.3.8
 WORKDIR rogue
 
-# Apply AxiStreamDma patch, as a workaround to race condition
-# reported in ESROGUE-353
-RUN mkdir -p patches
-ADD patches/* patches/
-RUN git apply patches/AxiStreamDma.patch
-
 RUN mkdir build
 WORKDIR build
 RUN cmake .. -DROGUE_INSTALL=system

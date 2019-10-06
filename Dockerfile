@@ -10,11 +10,11 @@ RUN apt-get update && apt-get install -y \
  && rm -rf /var/lib/apt/lists/*
 
 # PIP Packages
-RUN pip3 install PyYAML Pyro4 parse click pyzmq packaging
+RUN pip3 install PyYAML Pyro4 parse click pyzmq packaging jsonpickle sqlalchemy
 
 #Install Rogue
 WORKDIR /usr/local/src
-RUN git clone https://github.com/slaclab/rogue.git -b v3.3.8
+RUN git clone https://github.com/slaclab/rogue.git -b v4.1.0
 WORKDIR rogue
 
 RUN mkdir build

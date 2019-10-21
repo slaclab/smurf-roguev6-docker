@@ -12,13 +12,14 @@ RUN apt-get update && apt-get install -y \
 # PIP Packages
 RUN pip3 install PyYAML Pyro4 parse click pyzmq packaging jsonpickle sqlalchemy serial
 
-#Install Rogue
+# Install Rogue (An specific point in the the pre-release branch)
 WORKDIR /usr/local/src
-RUN git clone https://github.com/slaclab/rogue.git -b v4.2.0
+RUN git clone https://github.com/slaclab/rogue.git
 WORKDIR rogue
+RUN git checkout 381476afe3ea1738f6adc8488b1fd1f8bdd594fd
 
 RUN mkdir build
 WORKDIR build
-RUN cmake .. -DROGUE_INSTALL=system
+RUN cmake -DCMAKE_BUILD_TYPE=Release -DROGUE_INSTALL=system ..
 RUN make -j4 install
 ENV ROGUE_DIR /usr/local

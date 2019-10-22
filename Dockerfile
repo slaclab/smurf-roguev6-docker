@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     libbz2-dev \
     libzmq3-dev \
     python3-pyqt5 \
+    python3-pyqt5.qtsvg \
  && rm -rf /var/lib/apt/lists/*
 
 # PIP Packages

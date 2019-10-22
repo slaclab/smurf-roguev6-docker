@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
  && rm -rf /var/lib/apt/lists/*
 
 # PIP Packages
-RUN pip3 install PyYAML Pyro4 parse click pyzmq packaging jsonpickle sqlalchemy serial
+RUN pip3 install PyYAML Pyro4 parse click pyzmq packaging jsonpickle sqlalchemy serial pydm
 
 # Install Rogue (An specific point in the the pre-release branch)
 WORKDIR /usr/local/src

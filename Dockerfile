@@ -14,9 +14,8 @@ RUN pip3 install PyYAML Pyro4 parse click pyzmq packaging jsonpickle sqlalchemy 
 
 # Install Rogue (An specific point in the the pre-release branch)
 WORKDIR /usr/local/src
-RUN git clone https://github.com/slaclab/rogue.git
+RUN git clone https://github.com/slaclab/rogue.git -b v4.2.1
 WORKDIR rogue
-RUN git checkout 381476afe3ea1738f6adc8488b1fd1f8bdd594fd
 
 RUN mkdir build
 WORKDIR build

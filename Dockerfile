@@ -1,4 +1,4 @@
-FROM tidair/smurf-base:R1.0.0
+FROM tidair/smurf-base:R1.1.0
 
 # Install system tools
 RUN apt-get update && apt-get install -y \

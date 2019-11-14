@@ -18,6 +18,12 @@ WORKDIR /usr/local/src
 RUN git clone https://github.com/slaclab/rogue.git -b v4.5.1
 WORKDIR rogue
 
+# Apply ZmqServerClose patch, to solve the problem
+# reported in ESCRYODET-471
+RUN mkdir -p patches
+ADD patches/* patches/
+RUN git apply patches/ZmqServerClose.patch
+
 RUN mkdir build
 WORKDIR build
 RUN cmake -DCMAKE_BUILD_TYPE=Release -DROGUE_INSTALL=local ..

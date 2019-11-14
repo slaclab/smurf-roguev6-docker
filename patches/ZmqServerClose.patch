@@ -12,3 +12,4 @@ index 719e0f6a..345c27c0 100755
 +      //thread_->join();
     }
  }
+

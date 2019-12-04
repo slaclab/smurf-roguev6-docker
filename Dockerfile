@@ -24,4 +24,9 @@ RUN cmake -DCMAKE_BUILD_TYPE=Release -DROGUE_INSTALL=local ..
 RUN make -j4 install
 ENV PYTHONPATH /usr/local/src/rogue/lib:${PYTHONPATH}
 ENV PYTHONPATH /usr/local/src/rogue/python:${PYTHONPATH}
-ENV ROGUE_DIR /usr/local/src/rogue
+ENV ROGUE_DIR  /usr/local/src/rogue
+
+# Setup PyDM environmental variables
+ENV PYQTDESIGNERPATH       ${ROGUE_DIR}/python/pyrogue/pydm:${PYQTDESIGNERPATH}
+ENV PYDM_DATA_PLUGINS_PATH ${ROGUE_DIR}/python/pyrogue/pydm/data_plugins
+ENV PYDM_TOOLS_PATH        ${ROGUE_DIR}/python/pyrogue/pydm/tools

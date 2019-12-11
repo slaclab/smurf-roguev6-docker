@@ -20,7 +20,7 @@ WORKDIR rogue
 
 RUN mkdir build
 WORKDIR build
-RUN cmake -DCMAKE_BUILD_TYPE=Release -DROGUE_INSTALL=local ..
+RUN cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DROGUE_INSTALL=local ..
 RUN make -j4 install
 ENV PYTHONPATH /usr/local/src/rogue/lib:${PYTHONPATH}
 ENV PYTHONPATH /usr/local/src/rogue/python:${PYTHONPATH}

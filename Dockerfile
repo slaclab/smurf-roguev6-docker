@@ -18,6 +18,12 @@ WORKDIR /usr/local/src
 RUN git clone https://github.com/slaclab/rogue.git -b v4.6.3
 WORKDIR rogue
 
+# Apply StreamWriterChannel patch, to solve the problem
+# reported in ESCRYODET-533
+RUN mkdir -p patches
+ADD patches/* patches/
+RUN git apply patches/StreamWriterChannel.patch
+
 RUN mkdir build
 WORKDIR build
 RUN cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DROGUE_INSTALL=local ..

@@ -18,11 +18,15 @@ WORKDIR /usr/local/src
 RUN git clone https://github.com/slaclab/rogue.git -b v4.6.3
 WORKDIR rogue
 
-# Apply StreamWriterChannel patch, to solve the problem
-# reported in ESCRYODET-533
+# Apply patches
 RUN mkdir -p patches
 ADD patches/* patches/
+## Apply StreamWriterChannel patch, to solve the problem
+## reported in ESCRYODET-533
 RUN git apply patches/StreamWriterChannel.patch
+## Apply HelperFunctions patch, to solve the problem
+## reported in ESROGUE-415
+RUN git apply patches/HelperFunctions.patch
 
 RUN mkdir build
 WORKDIR build

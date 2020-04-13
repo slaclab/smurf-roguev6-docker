@@ -32,3 +32,8 @@ ENV ROGUE_DIR  /usr/local/src/rogue
 ENV PYQTDESIGNERPATH       ${ROGUE_DIR}/python/pyrogue/pydm:${PYQTDESIGNERPATH}
 ENV PYDM_DATA_PLUGINS_PATH ${ROGUE_DIR}/python/pyrogue/pydm/data_plugins
 ENV PYDM_TOOLS_PATH        ${ROGUE_DIR}/python/pyrogue/pydm/tools
+
+# Copy utility scripts
+RUN mkdir -p /usr/local/src/rogue_utilities
+COPY scripts/* /usr/local/src/rogue_utilities/
+ENV PATH /usr/local/src/rogue_utilities:${PATH}

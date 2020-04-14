@@ -15,17 +15,18 @@ parser.add_argument('--host', dest='host_name', type=str, default='localhost',
                     )
 
 parser.add_argument('--slot', dest='slot_number', type=int, choices=[2,3,4,5,6,7],
-                    help='Connect a GUI to pysmurf server running on a AMC carrier, located in this slot number.'\
-                    'Ignored if option \"--port\" is used.'
+                    help='Connect a GUI to pysmurf server running on a AMC carrier, located in this slot number. '\
+                    'The port number used is \"9000+2*slot_number\". Ignored if option \"--port\" is used.'
                     )
 
 parser.add_argument('--atca-monitor', action='store_true',
-                    help='Connect a GUI to an atca_monitor rogue server. Ignored if options \"--slot\" or \"--port\" are used.'
+                    help='Connect a GUI to an atca_monitor rogue server. The port number used is 9100. ' \
+                    'Ignored if options \"--slot\" or \"--port\" are used.'
                     )
 
 parser.add_argument('--pcie', action='store_true',
-                    help='Connect a GUI to a PCIe card rogue server. Ignored if options \"--slot\", \"--port\" \
-                    or \"--atca-monitor\" are used.'
+                    help='Connect a GUI to a PCIe card rogue server. The port number used is 9102. ' \
+                    'Ignored if options \"--slot\", \"--port\" or \"--atca-monitor\" are used.'
                     )
 
 parser.add_argument('--port', type=int, dest='port_number',

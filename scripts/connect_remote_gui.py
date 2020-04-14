@@ -48,23 +48,34 @@ title=None
 # - PCIe card rogue server
 if args.port_number:
     port = args.port_number
-    print(f'Starting a GUI on {host}:{port}')
+    print(f'Connecting a GUI to the server on {host}:{port}...')
 elif args.slot_number:
     port = 9000 + 2*args.slot_number
     title=f'smurf_server_s{args.slot_number} ({host}:{port})'
-    print(f'Starting a GUI for the server running on slot {args.slot_number} ({host}:{port})')
+    print(f'Connecting a GUI to the pysmurf server running on slot {args.slot_number} on {host}:{port}')
 elif args.atca_monitor:
     port = 9100
     title=f'atca-monitor ({host}:{port})'
-    print(f'Starting a GUI for the atca-monitor application ({host}:{port})')
+    print(f'Connecting a GUI to the atca-monitor application on {host}:{port}')
 elif args.pcie:
     port = 9102
     title=f'Pcie ({host}:{port})'
-    print(f'Starting a GUI for the PCIe card application ({host}:{port})')
+    print(f'Connecting a GUI to the PCIe card application on {host}:{port}')
 else:
     print(f'ERROR: Must choose an application type or a port number')
-    exit(-1)
+    exit(1)
 
-# Start the GUI here
-import pyrogue.pydm
-pyrogue.pydm.runPyDM(serverList=f'{host}:{port}',title=title)
+# Check if the port is open in the host
+import socket
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+r = s.connect_ex((host, port))
+s.close()
+
+if r == 0:
+    # Start the GUI here
+    import pyrogue.pydm
+    pyrogue.pydm.runPyDM(serverList=f'{host}:{port}',title=title)
+else:
+    # The port is not open, so exit
+    print(f'Error: port {port} in not open in host {host}. Make sure the rogue server is running...')
+    exit(1)

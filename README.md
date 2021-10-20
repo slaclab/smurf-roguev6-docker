@@ -21,7 +21,7 @@ The resulting docker image is tagged with the same git tag string (as returned b
 The image is intended mainly to be use as a base to build other docker images. In order to do so, start the new docker image Dockerfile with this line:
 
 ```
-ROM tidair/smurf-rogue:<TAG>
+FROM tidair/smurf-rogue:<TAG>
 ```
 
 A container however can be run as well from this image. For example, you can start the container in the foreground with this command

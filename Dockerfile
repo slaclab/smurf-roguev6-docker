@@ -11,7 +11,11 @@ RUN apt-get update && apt-get install -y \
  && rm -rf /var/lib/apt/lists/*
 
 # PIP Packages
-RUN pip3 install PyYAML Pyro4 parse click pyzmq packaging jsonpickle sqlalchemy serial pydm
+RUN pip3 install PyYAML Pyro4 parse click pyzmq packaging jsonpickle sqlalchemy serial
+# Server gui crashing for PyDM versions >= 1.19.0.
+RUN pip3 install pydm==1.18.2
+# Upgrade pyqt5
+RUN pip3 install pyqt5==5.15
 
 # Install Rogue (An specific point in the the pre-release branch)
 WORKDIR /usr/local/src

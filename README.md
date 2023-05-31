@@ -1,32 +1,62 @@
-# Docker image with Rogue for the SMuRF project
+
+# Rogue Docker image for the SMuRF project
 
 ## Description
 
-This docker image, named **smurf-rogue** contains Rogue and additional tools used by the SMuRF project. It is based on **smurf-base**.
+This docker image, named **smurf-roguev6** contains all the base tools used by the SMuRF project.
+
+It is based on ubuntu 22.04, and contains:
+- Basic system tools
+- python3
+- Python3 modules
+  - ipython
+  - numpy
+  - pyepics
+- EPICS base 3.15.5
+- SLAC IPMI wrappers
+- SLAC's FirmwareLoader and ProgramFPGA script
+- smurftestapps repository
+- Rogue Version 6
 
 ## Source code
 
 Rogue source code is checked out for the SLAC's github repository https://github.com/slaclab/rogue.
 
+The IPMC package containing source code, libraries, and binaries was taken from SLAC's version, hosted internally. The package was manually copied into this repository in the form of a tarball. The FirmwareLoader binary was taken from SLAC's version, hosted internally. The binary was manually copied into this repository in the form of a tarball.
+
 ## Building the image
 
-When a tag is pushed to this github repository, a new Docker image is automatically built and pushed to [Dockerhub](https://hub.docker.com/r/tidair/smurf-rogue). The resulting docker image is tagged with the same git tag string (as returned by `git describe --tags --always`).
+When a tag is pushed to this github repository, a new Docker image is automatically built and pushed to [Dockerhub](https://hub.docker.com/r/tidair/smurf-roguev6). The resulting docker image is tagged with the same git tag string (as returned by `git describe --tags --always`).
 
-## Using the container
+## Usage
 
 In your Dockerfile
 
 ```
-FROM tidair/smurf-rogue:<TAG>
+FROM tidair/smurf-roguev6:<TAG>
 ```
 
 In the commandline
 
 ```
-docker run -ti --rm --name smurf-rogue tidair/smurf-rogue:TAG
+docker run -ti --rm --name smurf-roguev6 tidair/smurf-roguev6:TAG
 ```
 
 - TAG: The tag of the Docker file, which is the same as this repository's tags.
+
+## Building the image locally
+
+To test without releasing, can build locally by running
+
+```
+docker build . -t smurf-roguev6
+```
+
+on the command line in the top smurf-base-docker repository directory.  If successful, can enter a bash session in the new image via
+
+```
+docker run -ti --rm --name smurf-roguev6 smurf-roguev6:latest
+```
 
 ### Use the container to connect remote rogue GUIs
 

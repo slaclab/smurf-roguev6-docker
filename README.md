@@ -12,7 +12,6 @@ It is based on ubuntu 22.04, and contains:
   - ipython
   - numpy
   - pyepics
-- EPICS base 3.15.5
 - SLAC IPMI wrappers
 - SLAC's FirmwareLoader and ProgramFPGA script
 - smurftestapps repository

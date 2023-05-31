@@ -21,6 +21,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
     libreadline6-dev \
     libboost-all-dev \
     libbz2-dev \
+    libzmq3-dev \
     python3-pyqt5 \
     python3-pyqt5.qtsvg \
     gdb && \
@@ -63,14 +64,13 @@ RUN useradd -d /home/cryo -M cryo -u 1000 && \
 
 # Install Rogue
 WORKDIR /usr/local/src
-RUN git clone https://github.com/slaclab/rogue.git -b rogue_v6
-WORKDIR rogue
-RUN mkdir build
-WORKDIR build
-RUN cmake .. -DROGUE_INSTALL=system
-RUN make -j4 install
-RUN echo /usr/local/lib >> /etc/ld.so.conf.d/rogue_epics.conf
-RUN ldconfig
+RUN git clone https://github.com/slaclab/rogue.git -b rogue_v6 &&\
+    mkdir rogue/build
+WORKDIR rogue/build
+RUN cmake .. -DROGUE_INSTALL=system && \
+    make -j4 install && \
+    echo /usr/local/lib >> /etc/ld.so.conf.d/rogue_epics.conf && \
+    ldconfig
 ENV PYQTDESIGNERPATH /usr/local/lib/python3.10/dist-packages/pyrogue/pydm
 ENV PYDM_DATA_PLUGINS_PATH /usr/local/lib/python3.10/dist-packages/pyrogue/pydm/data_plugins
 ENV PYDM_TOOLS_PATH /usr/local/lib/python3.10/dist-packages/pyrogue/pydm/tools

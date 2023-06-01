@@ -37,5 +37,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: tidair/smurf-rogue:${{ steps.get_tag.outputs.tag }}
+          tags: tidair/smurf-roguev6:${{ steps.get_tag.outputs.tag }}
           build-args: branch=${{ steps.get_tag.outputs.tag }}

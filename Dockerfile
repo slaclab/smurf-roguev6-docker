@@ -27,8 +27,8 @@ RUN DEBIAN_FRONTEND=noninteractive \
     gdb && \
     curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends git-lfs && \
-    git lfs install && \
-    rm -rf /var/lib/apt/lists/*
+    git lfs install
+#    rm -rf /var/lib/apt/lists/*
 
 # PIP Packages
 RUN pip3 install PyYAML parse click ipython pyzmq packaging matplotlib numpy p4p pyepics pydm jsonpickle sqlalchemy pyserial

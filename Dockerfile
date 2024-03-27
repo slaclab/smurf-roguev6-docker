@@ -1,4 +1,4 @@
-FROM ubuntu:22.10
+FROM ubuntu:24.04
 
 # Intall system utilities
 RUN DEBIAN_FRONTEND=noninteractive \

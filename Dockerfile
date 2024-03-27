@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM ubuntu:22.04
 
 # Intall system utilities
 RUN DEBIAN_FRONTEND=noninteractive \
@@ -32,6 +32,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
 
 # PIP Packages
 RUN pip3 install PyYAML parse click ipython pyzmq packaging matplotlib numpy p4p pyepics pydm jsonpickle sqlalchemy pyserial
+#RUN pip3 install --break-system-packages PyYAML parse click ipython pyzmq packaging matplotlib numpy p4p pyepics pydm jsonpickle sqlalchemy pyserial
 
 # Add the IPMI package
 WORKDIR /usr/local/src

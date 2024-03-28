@@ -40,6 +40,6 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: tidair/smurf-roguev6:${{ steps.get_tag.outputs.tag }}
-          build-args:
-            - branch=${{ steps.get_tag.outputs.tag }}
-            - GH_TOKEN=${{ secrets.GH_TOKEN }}
+          build-args: |
+            branch=${{ steps.get_tag.outputs.tag }}
+            GH_TOKEN=${{ secrets.GH_TOKEN }}

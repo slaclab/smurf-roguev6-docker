@@ -19,9 +19,7 @@ jobs:
         id: get_tag
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: |
-          echo ::set-output name=tag::"${GITHUB_REF#refs/tags/}"
-          echo gh_token=${GH_TOKEN} >> ${GITHUB_OUTPUT}
+        run: echo ::set-output name=tag::"${GITHUB_REF#refs/tags/}"
 
       # Setup docker build environment
       - name: Set up Docker Buildx
@@ -42,4 +40,4 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: tidair/smurf-roguev6:${{ steps.get_tag.outputs.tag }}
-          build-args: branch=${{ steps.get_tag.outputs.tag }} GH_TOKEN=${{ steps.get_tag.outputs.gh_token  }}
+          build-args: branch=${{ steps.get_tag.outputs.tag }} GH_TOKEN=${{ secrets.GH_TOKEN }}
